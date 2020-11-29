@@ -6,9 +6,12 @@ export const bobjCmsUsers = async (url, token) => {
     `${url}/v1/cmsquery`,
     {
       query:
-        "SELECT TOP 1000000 SI_EMAIL_ADDRESS, SI_FORCE_PASSWORD_CHANGE, SI_NAME, SI_ID, SI_USERGROUPS, SI_USERFULLNAME, SI_ALIASES, SI_DESCRIPTION, SI_LASTLOGONTIME, SI_PASSWORDEXPIRE, SI_NAMEDUSER FROM CI_SYSTEMOBJECTS Where SI_KIND='User' ORDER BY SI_NAME",
+        "SELECT TOP 10000 SI_EMAIL_ADDRESS, SI_FORCE_PASSWORD_CHANGE, SI_NAME, SI_ID, SI_USERGROUPS, SI_USERFULLNAME, SI_ALIASES, SI_DESCRIPTION, SI_LASTLOGONTIME, SI_NAMEDUSER FROM CI_SYSTEMOBJECTS Where SI_KIND='User' ORDER BY SI_NAME",
     },
     {
+      params: {
+        pagesize: process.env.REACT_APP_PAGESIZE,
+      },
       headers: {
         "X-Requested-With": "XMLHttpRequest",
         "X-SAP-LogonToken": token,
@@ -36,7 +39,7 @@ export const bobjCmsUsers = async (url, token) => {
     });
 
     // compute disabled based on aliases
-    let disabled = aliases.every((a) => !a.disabled);
+    let disabled = aliases.every((a) => a.disabled);
 
     // convert
     return {

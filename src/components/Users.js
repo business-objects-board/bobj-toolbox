@@ -21,12 +21,36 @@ const Users = () => {
     }
   }, [token, url]);
 
+  let count;
+  if (users.length === 0) {
+    count = (
+      <div className="p-4">
+        No users extracted from the BOBJ system. Just provide the credentials
+        and hit "Connect" to get the user list.{" "}
+        <strong>
+          No credential is sent to the webserver, it is only used to call the
+          BOBJ REST api (<i>cms.local</i> field).
+        </strong>{" "}
+        The REST API is created by adding <code>:6405/biprws</code> to the{" "}
+        <i>cms.local</i> field.
+      </div>
+    );
+  } else {
+    count = (
+      <div className="p-4">
+        <strong>{users.length}</strong> users extracted from the BOBJ system.
+        Copy it to Excel / GSheet / you name it to work on the data.
+      </div>
+    );
+  }
+
   return (
     <div>
-      <table>
-        <thead>
+      {count}
+      <table className="min-w-full bg-white">
+        <thead className="bg-gray-800 text-white">
           <tr>
-            <th>ID</th>
+            <th className="py-3 px-4">ID</th>
             <th>Name</th>
             <th>FullName</th>
             <th>Email</th>
@@ -38,7 +62,7 @@ const Users = () => {
             <th>Concurrent</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-gray-700">
           {users.map((u) => (
             <UserItem key={u.id} user={u} />
           ))}

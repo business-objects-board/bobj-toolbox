@@ -32,18 +32,34 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="p-2">
       {error && <div>{error}</div>}
-      <form>
-        <input id="name" type="text" placeholder="cms.local" {...bindHost} />
-        <input id="code" type="text" placeholder="user" {...bindUser} />
+      <form className="space-x-2">
         <input
+          className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="name"
+          type="text"
+          placeholder="cms.local"
+          {...bindHost}
+        />
+        <input
+          className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="code"
+          type="text"
+          placeholder="user"
+          {...bindUser}
+        />
+        <input
+          className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           placeholder="password"
           {...bindPw}
         />
-        <button onClick={handleSubmit} type="button">
+        <button
+          className="bg-gray-200 light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
+          onClick={handleSubmit}
+        >
           Connect
         </button>
       </form>
