@@ -1,4 +1,6 @@
 import { useContext, useEffect, useState } from "react";
+import ReactGA from "react-ga";
+
 import { bobjCmsUsers } from "../api/cmsquery";
 
 import { ApiContext } from "../providers/ApiProvider";
@@ -14,9 +16,17 @@ const Users = () => {
       bobjCmsUsers(url, token)
         .then((users) => {
           setUsers(users);
+          ReactGA.event({
+            category: "Users",
+            action: "Retrieve users",
+          });
         })
         .catch((err) => {
           console.log(err.message);
+          ReactGA.event({
+            category: "Users",
+            action: "Error during retrieving",
+          });
         });
     }
   }, [token, url]);
