@@ -3,6 +3,7 @@ import { useInput } from "../hooks/input";
 
 import { ApiContext } from "../providers/ApiProvider";
 import { bobjLogin } from "../api/login";
+import ReactGA from "react-ga";
 
 const Login = () => {
   const { setApi } = useContext(ApiContext);
@@ -25,9 +26,17 @@ const Login = () => {
         setApi(url, token);
         resetPw();
         setError(null);
+        ReactGA.event({
+          category: "Login",
+          action: "Success",
+        });
       })
       .catch((err) => {
         setError(err.message);
+        ReactGA.event({
+          category: "Login",
+          action: "Failed login",
+        });
       });
   };
 
