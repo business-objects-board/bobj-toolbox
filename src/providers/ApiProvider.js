@@ -8,13 +8,6 @@ class ApiProvider extends Component {
     token: null,
   };
 
-  //   componentDidMount = async () => {
-  //     auth.onAuthStateChanged(async (userAuth) => {
-  //       const user = await generateUserDocument(userAuth, { cards: [] });
-  //       this.setState({ user });
-  //     });
-  //   };
-
   render() {
     let { url, token } = this.state;
 
