@@ -8,19 +8,20 @@ import ReactGA from "react-ga";
 const Login = () => {
   const { setApi } = useContext(ApiContext);
   const [error, setError] = useState();
-  const { value: host, bind: bindHost } = useInput(
-    process.env.REACT_APP_BOBJ_HOST
+  const { value: url, bind: bindUrl } = useInput(
+    process.env.REACT_APP_BOBJ_URL || `http://bobj-server:6405/biprws/`
   );
   const { value: user, bind: bindUser } = useInput(
-    process.env.REACT_APP_BOBJ_USER
+    process.env.REACT_APP_BOBJ_USER || `Administrator`
   );
-  const { value: pw, bind: bindPw, reset: resetPw } = useInput(
-    process.env.REACT_APP_BOBJ_PW
-  );
+  const {
+    value: pw,
+    bind: bindPw,
+    reset: resetPw,
+  } = useInput(process.env.REACT_APP_BOBJ_PW);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const url = "http://" + host + ":6405/biprws/";
     bobjLogin(url, user, pw, "secEnterprise")
       .then((token) => {
         setApi(url, token);
@@ -45,21 +46,21 @@ const Login = () => {
       {error && <div>{error}</div>}
       <form className="space-x-2">
         <input
-          className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded  py-2 px-3 w-3/12 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="name"
           type="text"
-          placeholder="cms.local"
-          {...bindHost}
+          placeholder="http://bobj-server:6405/biprws/"
+          {...bindUrl}
         />
         <input
-          className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded  py-2 px-3  w-3/12 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="code"
           type="text"
           placeholder="user"
           {...bindUser}
         />
         <input
-          className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded  py-2 px-3 w-3/12 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           placeholder="password"

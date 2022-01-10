@@ -39,10 +39,16 @@ const Users = () => {
         and hit "Connect" to get the user list.{" "}
         <strong>
           No credential is sent to the webserver, it is only used to call the
-          BOBJ REST api (<i>cms.local</i> field).
-        </strong>{" "}
-        The REST API is created by adding <code>:6405/biprws</code> to the{" "}
-        <i>cms.local</i> field.
+          BOBJ REST api (first field).
+        </strong>
+        <a
+          className="text-blue-800 hover:underline"
+          href="https://bobj-board.org/t/bobj-bi4-2-user-list-and-group-extraction-via-spa/256347"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Feedback here is welcome !
+        </a>
       </div>
     );
   } else {

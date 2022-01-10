@@ -7,7 +7,7 @@ Small set of tools for SAP Business Objects BI4 platform managed by the [bobj-bo
 
 Go to the url of the application [here](http://tools.bobj-board.org/).
 
-Provide your BOBJ dns (where your REST api is hosted, it is just adding `:6405/biprws` to generate the API endpoint), your BOBJ user and your BOBJ password (currently it work only using Enterprise authentication)
+Provide your BOBJ REST API endpoint, your BOBJ user and your BOBJ password (currently it work only using Enterprise authentication)
 
 ![login](login.png)
 
